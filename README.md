@@ -1,2 +1,2 @@
 # capstone-backend
-Capstone backend with Akira Brown, Onyx McQueen, Mussie Russom, and Michelle Harley
+Capstone backend with Akira Brown, Chantal Gomez, Onyx McQueen, and Mussie Russom.
