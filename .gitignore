@@ -1,0 +1,7 @@
+# ---------- #
+# The .gitignore file is used to ignore files in the repository that you don't want to push to GitHub.
+# ---------- #
+
+node_modules
+package-lock.json
+# .env
