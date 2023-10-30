@@ -1,5 +1,5 @@
 // This is an example model. You can use this as a template for your own models.
-module.exports = [
+const users = [
   {
     id: 1,
     user_name: "Akira",
@@ -28,3 +28,5 @@ module.exports = [
     notication_id: [],
   },
 ];
+
+module.exports = users;
