@@ -8,7 +8,7 @@ console.log(exampleModel);
 
 // GET
 router.get("/:id", (req, res) => {
-  // Controller logic to get a single item
+  res.status(200).json();
 });
 
 router.get("/", (req, res) => {
