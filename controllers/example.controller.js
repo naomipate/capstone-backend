@@ -9,6 +9,8 @@ console.log(exampleModel);
 // GET
 router.get("/:id", (req, res) => {
   // Controller logic to get a single item
+  const { id } = req.params;
+  res.status(200).send(exampleModel[`${id}`]);
 });
 
 router.get("/", (req, res) => {
