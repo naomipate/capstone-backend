@@ -8,8 +8,10 @@ const {
 
 router.get("/", async (req, res) => {
     const allUsers = await getAllUsers();
-    if (Array.isArray(allUsers)) {
+    console.log(allUsers);
+    if (allUsers[0]) {
       res.json(allUsers);
+
     } else {
       res.status(500).json({ error: "Server Error!" });
     }
