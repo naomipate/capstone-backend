@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 // CONTROLLERS
-const exampleController = require("./controllers/example.controller");
+// const exampleController = require("./controllers/example.controller");
 const userController = require("./controllers/user.controller");
 
 // CONFIG

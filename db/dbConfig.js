@@ -1,3 +1,4 @@
+require("dotenv").config();
 const pgp = require("pg-promise")();
 const cn = {
   host: process.env.PG_HOST,
