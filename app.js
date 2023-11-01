@@ -1,10 +1,10 @@
 // DEPENDENCIES
-const express = require('express');
+const express = require("express");
 const morgan = require("morgan");
-const cors = require('cors');
+const cors = require("cors");
 
 // CONTROLLERS
-const exampleController = require('./controllers/example.controller');
+const exampleController = require("./controllers/example.controller");
 
 // CONFIG
 const app = express();
@@ -15,10 +15,10 @@ app.use(express.json()); // Parse incoming JSON
 app.use(cors()); // Enable Cross Origin Resource Sharing
 
 // ROUTES
-app.use('/example', exampleController);
+app.use("/example", exampleController);
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
 // EXPORT
