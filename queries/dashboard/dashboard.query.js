@@ -1,10 +1,10 @@
-const db = require("../db/dbConfig");
+const db = require("../../db/dbConfig");
 
-// GET ALL UPCOMING FRIENDS BY ASCENDING DATE
+// GET ALL UPCOMING FRIENDS BY DESCENDING DATE
 const getAllUpcomingFriends = async () => {
   try {
     const allUpcomingFriendsBirthdays = await db.any(
-      "SELECT * FROM friends_list ORDER BY dob ASC"
+      "SELECT * FROM friends_list ORDER BY dob DESC"
     );
     return allUpcomingFriendsBirthdays;
   } catch (error) {
@@ -15,8 +15,8 @@ const getAllUpcomingFriends = async () => {
 // GET USER PROFILE ON SIGN-IN
 const getUserProfile = async (id) => {
   try {
-    const game = await db.any("SELECT * FROM games WHERE id=$1", [id]);
-    return game;
+    const user = await db.any("SELECT * FROM users WHERE id=$1", id);
+    return user;
   } catch (error) {
     return error;
   }

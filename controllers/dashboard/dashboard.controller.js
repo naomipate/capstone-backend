@@ -1,19 +1,20 @@
 // DEPENDENCIES
 const express = require("express");
 const router = express.Router();
-let exampleModel = require("../models/example.model");
+const {
+  getAllUpcomingFriends,
+  getUserProfile,
+} = require("../../queries/dashboard/dashboard.query");
 
-// Make sure your model is working
-console.log(exampleModel);
-
-// GET
+// GET USER PROFILE
 router.get("/:id", (req, res) => {
-  res.status(200).json();
+  console.log(req.params.id);
+  res.status(200).json(getUserProfile());
 });
 
+// GET ALL UPCOMING FRIENDS
 router.get("/", (req, res) => {
-  // Controller logic to get all items
-  res.status(200).send(exampleModel);
+  res.status(200).json();
 });
 
 // POST
