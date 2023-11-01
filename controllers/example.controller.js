@@ -4,7 +4,7 @@ const router = express.Router();
 let exampleModel = require("../models/example.model");
 
 // Make sure your model is working
-console.log(exampleModel);
+// console.log(exampleModel);
 
 // GET
 router.get("/:id", (req, res) => {
