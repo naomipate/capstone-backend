@@ -2,7 +2,7 @@
 const users = [
   {
     id: 1,
-    user_name: "Akira",
+    name: "Akira",
     dob: "1998-12-21",
     email: "akira@email.com",
     friends_list_id: [1, 3],

@@ -29,8 +29,11 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   // Controller logic to delete an item
+  const { id } = req.params;
+  const deletedWishlist = await deleteWishlist(id);
+  res.status(200).send(exampleModel[`${id}`]);
 });
 
 // EXPORT
