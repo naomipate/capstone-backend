@@ -4,7 +4,8 @@ const morgan = require("morgan");
 const cors = require('cors');
 
 // CONTROLLERS
-const exampleController = require('./controllers/example.controller');
+// const exampleController = require('./controllers/example.controller');
+const userController = require('./controllers/user.controller');
 
 // CONFIG
 const app = express();
@@ -15,7 +16,9 @@ app.use(express.json()); // Parse incoming JSON
 app.use(cors()); // Enable Cross Origin Resource Sharing
 
 // ROUTES
-app.use('/example', exampleController);
+// app.use('/example', exampleController);
+
+app.use('/user', userController);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
