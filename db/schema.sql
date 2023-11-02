@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS giftune_db;
 CREATE DATABASE giftune_db;
 \c giftune_db 
 
-DROP TABLE IF EXISTS users;
+
 CREATE TABLE users (
     id SERIAL PRIMARY KEY NOT NULL,
     user_name VARCHAR(255) NOT NULL,

@@ -1,37 +1,71 @@
-// // DEPENDENCIES
-// const express = require("express");
-// const router = express.Router();
+// DEPENDENCIES
+const express = require("express");
+const router = express.Router();
 // let exampleModel = require("../models/example.model");
 
-// // Make sure your model is working
+// Make sure your model is working
 // console.log(exampleModel);
 
-// // GET
-// router.get("/:id", (req, res) => {
-//   // Controller logic to get a single item
-//   const { id } = req.params;
-//   res.status(200).send(exampleModel[`${id}`]);
-// });
+const {
+  getAllWishlists,
+  getFriendsWishlist,
+  createWishlist,
+  deleteFriendsWishlist,
+} = require("../queries/friendsWishlists");
 
-// router.get("/", (req, res) => {
-//   // Controller logic to get all items
-//   res.status(200).send(exampleModel);
-// });
+// GET AND POST
+router
+  .route("/")
+  .get(async (req, res) => {
+    const allWishlists = await getAllWishlists();
 
-// // POST
-// router.post("/", (req, res) => {
-//   // Controller logic to create a new item
-// });
+    if (!allWishlists) {
+      res.status(500).json({ error: "Server error" });
+    } else {
+      res.json(allWishlists);
+    }
+  })
+  .post(async (req, res) => {
+    const { wishlist_id } = req.body;
+    const createdWishlist = await createWishlist(req.body);
 
-// // EDIT
-// router.put("/:id", (req, res) => {
-//   // Controller logic to edit an item
-// });
+    if (!wishlist_id) {
+      res.status(400).json({
+        status: false,
+        message: "You have to give a wishlist_id for the wishlist.",
+      });
+    } else {
+      res.json({ status: true, data: createdWishlist });
+    }
+  });
 
-// // DELETE
-// router.delete("/:id", (req, res) => {
-//   // Controller logic to delete an item
-// });
+// GET AND DELETE BY ID
+router
+  .route("/:id")
+  .get(async (req, res) => {
+    const { id } = req.params;
 
-// // EXPORT
-// module.exports = router;
+    const friendsWishlist = await getFriendsWishlist(id);
+
+    if (!friendsWishlist) {
+      res.status(400).json({
+        status: false,
+        message: "Id not found!",
+      });
+    } else {
+      res.json(friendsWishlist);
+    }
+  })
+  .delete(async (req, res) => {
+    const { id } = req.params;
+    const deletedFriendsWishlist = await deleteFriendsWishlist(id);
+
+    if (deletedFriendsWishlist.length === 0) {
+      res.status(404).json({ message: "Id not found!" });
+    } else {
+      res.json(deletedFriendsWishlist[0]);
+    }
+  });
+
+// EXPORT
+module.exports = router;
