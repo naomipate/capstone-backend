@@ -2,14 +2,19 @@
 const express = require("express");
 const router = express.Router();
 const {
-  getAllUpcomingFriends,
   getUserProfile,
+  getAllUpcomingFriends,
 } = require("../../queries/dashboard/dashboard.query");
 
 // GET USER PROFILE
-router.get("/:id", (req, res) => {
-  console.log(req.params.id);
-  res.status(200).json(getUserProfile());
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const userProfile = await getUserProfile(id);
+    res.status(200).json(userProfile);
+  } catch (e) {
+    res.status(500).json({ message: `Error: ${e}` });
+  }
 });
 
 // GET ALL UPCOMING FRIENDS

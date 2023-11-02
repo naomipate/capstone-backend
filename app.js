@@ -15,7 +15,7 @@ app.use(express.json()); // Parse incoming JSON
 app.use(cors("*")); // Enable Cross Origin Resource Sharing
 
 // ROUTES
-app.use("/dashboard", dashboardController);
+app.use("/profile", dashboardController);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

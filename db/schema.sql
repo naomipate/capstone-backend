@@ -59,6 +59,7 @@ INSERT INTO wishlist(user_id, item_name, link) VALUES
 (2, 'ipad pro', 'https://www.amazon.com/Apple-12-9-inch-iPad-Pro-Wi-Fi-256GB/dp/B0BJLFC67L/ref=sr_1_3?crid=YC0HIFYXGDV7&keywords=ipad+pro&qid=1698683221&sprefix=ipad+pro%2Caps%2C74&sr=8-3&ufe=app_do%3Aamzn1.fos.765d4786-5719-48b9-b588-eab9385652d5'),
 (3, 'legos', 'https://www.amazon.com/LEGO-6386348-TBD-Ideas-21333/dp/B09SM828FD/ref=sr_1_5?crid=1T3E00D7AGANB&keywords=legos&qid=1698683290&sprefix=legos%2Caps%2C103&sr=8-5&ufe=app_do%3Aamzn1.fos.f5122f16-c3e8-4386-bf32-63e904010ad0'),
 (4, 'dress', 'https://www.etsy.com/listing/221130185/hooded-tunic-dress-with-thumb-hole?ga_order=most_relevant&ga_search_type=all&ga_view_type=gallery&ga_search_query=&ref=sr_gallery-1-26&frs=1&bes=1&referrer_page_guid=f730e328f6f.139127ed5b393d61b485.00&organic_search_click=1'),
+(4, 'knit sweater', 'https://www.etsy.com/listing/742241530/dark-taupe-brown-loose-knit-blouse?ga_order=most_relevant&ga_search_type=all&ga_view_type=gallery&ga_search_query=blouse&ref=sc_gallery-1-6&frs=1&etp=1&referrer_page_guid=f738c22f1e8.ef7a4771bd7ca0e55ea0.00&plkey=a51a64fe6cadeec2362ca5c4cb34e7e439fe0175%3A742241530'),
 (5, 'headphones', 'https://www.ebay.com/p/19051992378?iid=394850116603');
 
 
