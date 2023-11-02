@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "pg:init": "psql -U postgres -f db/schema.sql",
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "pg:init": "psql -U postgres -f db/schema.sql",
+    "pg:seed": "psql -U postgres -f db/seed.sql"
   },
   "keywords": [],
   "author": "",
