@@ -1,4 +1,4 @@
-const db = require("../../db/dbConfig");
+const db = require("../db/dbConfig");
 
 // GET USER PROFILE ON SIGN-IN
 const getUserProfile = async (id) => {
