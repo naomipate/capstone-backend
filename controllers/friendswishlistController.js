@@ -1,10 +1,6 @@
 // DEPENDENCIES
 const express = require("express");
 const router = express.Router();
-// let exampleModel = require("../models/example.model");
-
-// Make sure your model is working
-// console.log(exampleModel);
 
 const {
   getAllWishlists,

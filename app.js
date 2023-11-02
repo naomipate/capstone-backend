@@ -5,10 +5,9 @@ const cors = require("cors");
 
 // CONTROLLERS
 
-const friendsWishlistController = require("./controllers/friendsWishlistController");
-// const { getFriendsWishlist } = require("./queries/friendsWishlists");
+const friendsWishlistController = require("./controllers/friendswishlistController");
 
-const usersController = require("./controllers/usersController");
+const usersController = require("./controllers/userController");
 const dashboardController = require("./controllers/dashboardController");
 
 // CONFIG
