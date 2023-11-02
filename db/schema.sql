@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS giftune_db;
 CREATE DATABASE giftune_db;
-\c giftune_db
+\c giftune_db;
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
