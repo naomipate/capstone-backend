@@ -19,7 +19,7 @@ app.use(express.json()); // Parse incoming JSON
 app.use(cors("*")); // Enable Cross Origin Resource Sharing
 
 // ROUTES
-app.use("/friendsWishlist", friendsWishlistController);
+app.use("/friendswishlist", friendsWishlistController);
 
 app.get("/", (req, res) => {
   res.send("Giftune!");

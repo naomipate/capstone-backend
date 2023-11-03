@@ -28,40 +28,40 @@ router
     if (!wishlist_id) {
       res.status(400).json({
         status: false,
-        message: "You have to give a wishlist_id for the wishlist.",
+        message: "You have to give gift item name",
       });
     } else {
       res.json({ status: true, data: createdWishlist });
     }
   });
 
-// GET AND DELETE BY ID
-router
-  .route("/:id")
-  .get(async (req, res) => {
-    const { id } = req.params;
+// GET BY ID
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
 
-    const friendsWishlist = await getFriendsWishlist(id);
+  const friendsWishlist = await getFriendsWishlist(id);
 
-    if (!friendsWishlist) {
-      res.status(400).json({
-        status: false,
-        message: "Id not found!",
-      });
-    } else {
-      res.json(friendsWishlist);
-    }
-  })
-  .delete(async (req, res) => {
-    const { id } = req.params;
-    const deletedFriendsWishlist = await deleteFriendsWishlist(id);
+  if (!friendsWishlist) {
+    res.status(400).json({
+      status: false,
+      message: "Id not found!",
+    });
+  } else {
+    res.json(friendsWishlist);
+  }
+});
 
-    if (deletedFriendsWishlist.length === 0) {
-      res.status(404).json({ message: "Id not found!" });
-    } else {
-      res.json(deletedFriendsWishlist[0]);
-    }
-  });
+// DELETE BY ID
+router.delete("/:id/:name", async (req, res) => {
+  const { id, name } = req.params;
+  const deletedFriendsWishlist = await deleteFriendsWishlist(id, name);
+
+  if (deletedFriendsWishlist.length === 0) {
+    res.status(404).json({ message: "Id not found!" });
+  } else {
+    res.json(deletedFriendsWishlist[0]);
+  }
+});
 
 // EXPORT
 module.exports = router;
