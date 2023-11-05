@@ -18,11 +18,11 @@ const getUsersById = async (id) => {
   }
 };
 
-const createUser = async ({ user_name, dob, email }) => {
+const createUser = async ({ user_name, first_name, last_name, dob, email }) => {
   try {
     const newUser = await db.any(
-      "INSERT INTO users(user_name,dob,email) VALUES ($1,$2,$3) RETURNING *",
-      [user_name, dob, email]
+      "INSERT INTO users(user_name,dob,email) VALUES ($1,$2,$3,$4,$5) RETURNING *",
+      [user_name, first_name, last_name, dob, email]
     );
     return newUser;
   } catch (error) {

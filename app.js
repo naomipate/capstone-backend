@@ -20,8 +20,12 @@ app.use("/users", usersController);
 app.use("/dashboard", dashboardController);
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+    res.send("Welcome to Giftune!");
 });
+
+app.get("*", (req, res) => {
+    res.status(404).send("Page not found");
+  });
 
 // EXPORT
 module.exports = app;
