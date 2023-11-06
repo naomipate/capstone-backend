@@ -30,7 +30,7 @@ const createWishlist = async (data) => {
     const newWishlist = await db.one(
       `INSERT INTO wishlist (user_id, item_name, link)
       VALUES ($1, $2, $3) RETURNING *`,
-      [data.wishlist_id]
+      [data.user_id, data.item_name, data.link]
     );
 
     return newWishlist;
@@ -39,11 +39,11 @@ const createWishlist = async (data) => {
   }
 };
 
-const deleteFriendsWishlist = async (id, name) => {
+const deleteFriendsWishlist = async (id) => {
   try {
-    const deletedFriendsWishlist = await db.any(
-      `DELETE FROM wishlist WHERE user_id = $1 AND item_name = $2 RETURNING *`,
-      [id, name]
+    const deletedFriendsWishlist = await db.one(
+      `DELETE FROM wishlist WHERE id = $1 RETURNING *`,
+      id
     );
 
     return deletedFriendsWishlist;

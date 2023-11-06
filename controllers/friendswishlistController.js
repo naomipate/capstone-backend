@@ -22,10 +22,10 @@ router
     }
   })
   .post(async (req, res) => {
-    const { wishlist_id } = req.body;
+    const { item_name } = req.body;
     const createdWishlist = await createWishlist(req.body);
 
-    if (!wishlist_id) {
+    if (!item_name) {
       res.status(400).json({
         status: false,
         message: "You have to give gift item name",
@@ -52,9 +52,9 @@ router.get("/:id", async (req, res) => {
 });
 
 // DELETE BY ID
-router.delete("/:id/:name", async (req, res) => {
-  const { id, name } = req.params;
-  const deletedFriendsWishlist = await deleteFriendsWishlist(id, name);
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  const deletedFriendsWishlist = await deleteFriendsWishlist(id);
 
   if (deletedFriendsWishlist.length === 0) {
     res.status(404).json({ message: "Id not found!" });

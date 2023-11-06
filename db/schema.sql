@@ -1,20 +1,28 @@
 DROP DATABASE IF EXISTS giftune_db;
+
 CREATE DATABASE giftune_db;
+<<<<<<< HEAD
 \c giftune_db
+=======
+
+\c giftune_db;
+>>>>>>> a91556c70fde90ddc90fd6bbef00b96a10c30b38
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
     id SERIAL PRIMARY KEY NOT NULL,
     user_name VARCHAR(255) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
     dob DATE NOT NULL,
     email VARCHAR(255) NOT NULL
 );
 INSERT INTO users(user_name, dob, email) VALUES
-('Akira', '1998-12-21', 'akira@email.com'),
-('Chantal', '1999-05-13', 'chantal@email.com'),
-('Onyx', '1997-01-06', 'onyx@email.com'),
-('Naomi', '1994-09-10', 'naomi@email.com'),
-('Mussie', '1989-02-27', 'mussie@email.com');
+('Akira', 'Akira', 'Brown', '1998-12-21', 'akira@email.com'),
+('Chantal', 'Chantal', 'Gomez', '1999-05-13', 'chantal@email.com'),
+('Onyx', 'Onyx', 'McQueen', '1997-01-06', 'onyx@email.com'),
+('Naomi', 'Naomi', 'Pate', '1994-09-10', 'naomi@email.com'),
+('Mussie', 'Mussie', 'Russom','1989-02-27', 'mussie@email.com');
 
 
 DROP TABLE IF EXISTS friends_list;
