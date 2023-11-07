@@ -1,7 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const { getAllUsers, getUsersById, createUser } = require("../queries/users");
+const {
+  getAllUsers,
+  getUsersById,
+  getUserByEmail,
+  createUser,
+} = require("../queries/users");
 
 router.get("/", async (req, res) => {
   const allUsers = await getAllUsers();
@@ -22,6 +27,18 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ error: "User not found!" });
   } else {
     res.status(200).json(user[0]);
+  }
+});
+
+router.get("/find-email", async (req, res) => {
+  const { email } = req.body;
+  try {
+    const foundUser = await getUserByEmail(email);
+    res.status(200).json(foundUser);
+  } catch (error) {
+    res.status(500).json({
+      error: error,
+    });
   }
 });
 

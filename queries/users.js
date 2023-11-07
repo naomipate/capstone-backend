@@ -18,6 +18,17 @@ const getUsersById = async (id) => {
   }
 };
 
+const getUserByEmail = async (email) => {
+  try {
+    const userInfo = await db.any("SELECT * FROM users WHERE email=$1", [
+      email,
+    ]);
+    return userInfo;
+  } catch (error) {
+    return error;
+  }
+};
+
 const createUser = async ({ user_name, first_name, last_name, dob, email }) => {
   try {
     const newUser = await db.any(
@@ -33,5 +44,6 @@ const createUser = async ({ user_name, first_name, last_name, dob, email }) => {
 module.exports = {
   getAllUsers,
   getUsersById,
+  getUserByEmail,
   createUser,
 };
