@@ -13,7 +13,9 @@ const getAllWishlists = async () => {
 const getFriendsWishlist = async (id) => {
   try {
     const FriendWishlist = await db.any(
-      `SELECT * FROM wishlist WHERE id = $1`,
+      `SELECT * FROM wishlist AS w 
+      INNER JOIN friends_list AS f 
+      ON w.user_id = f.friends_id WHERE f.user_id = $1`,
       id
     );
 
@@ -26,9 +28,9 @@ const getFriendsWishlist = async (id) => {
 const createWishlist = async (data) => {
   try {
     const newWishlist = await db.one(
-      `INSERT INTO wishlist (wishlist_id)
-      VALUES ($1,) RETURNING *`,
-      [data.wishlist_id]
+      `INSERT INTO wishlist (user_id, item_name, link)
+      VALUES ($1, $2, $3) RETURNING *`,
+      [data.user_id, data.item_name, data.link]
     );
 
     return newWishlist;
@@ -39,14 +41,14 @@ const createWishlist = async (data) => {
 
 const deleteFriendsWishlist = async (id) => {
   try {
-    const deletedFriendsWishlist = await db.any(
+    const deletedFriendsWishlist = await db.one(
       `DELETE FROM wishlist WHERE id = $1 RETURNING *`,
       id
     );
 
     return deletedFriendsWishlist;
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 };
 module.exports = {
