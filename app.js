@@ -19,9 +19,10 @@ app.use(cors("*")); // Enable Cross Origin Resource Sharing
 // ROUTES
 app.use("/users", usersController);
 app.use("/dashboard", dashboardController);
-res.send("Welcome to Giftune!");
 app.use("/friendsWishlist", friendsWishlistController);
-
+app.use("/", (req, res) => {
+  res.send("Welcome to Giftune!");
+});
 app.get("*", (req, res) => {
   res.status(404).send("Page not found");
 });

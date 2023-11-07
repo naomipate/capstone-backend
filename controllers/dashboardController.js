@@ -12,7 +12,7 @@ router.get("/:id", async (req, res) => {
   try {
     const userProfile = await getUserProfile(id);
     const friendsOrderedByDOB = await getFriendsAndTheirWishlists(id);
-    res.status(200).json(userProfile);
+    res.status(200).json({ userProfile, friendsOrderedByDOB });
   } catch (e) {
     res.status(500).json({ message: `Error: ${e}` });
   }
