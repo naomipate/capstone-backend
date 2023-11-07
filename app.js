@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 // CONTROLLERS
-const usersController = require("./controllers/usersController");
+const usersController = require("./controllers/userController");
 const dashboardController = require("./controllers/dashboardController");
 
 // CONFIG
@@ -20,12 +20,12 @@ app.use("/users", usersController);
 app.use("/dashboard", dashboardController);
 
 app.get("/", (req, res) => {
-    res.send("Welcome to Giftune!");
+  res.send("Welcome to Giftune!");
 });
 
 app.get("*", (req, res) => {
-    res.status(404).send("Page not found");
-  });
+  res.status(404).send("Page not found");
+});
 
 // EXPORT
 module.exports = app;
