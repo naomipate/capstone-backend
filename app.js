@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 // CONTROLLERS
-const usersController = require('./controllers/userController')
+const usersController = require("./controllers/userController");
 const friendsWishlistController = require("./controllers/friendsWishlistController");
 const dashboardController = require("./controllers/dashboardController");
 
@@ -17,14 +17,15 @@ app.use(express.json()); // Parse incoming JSON
 app.use(cors("*")); // Enable Cross Origin Resource Sharing
 
 // ROUTES
-  app.use("/users", usersController);
-  app.use("/dashboard", dashboardController);
-    res.send("Welcome to Giftune!");
-  app.use("/friendsWishlist", friendsWishlistController);
-
+app.use("/users", usersController);
+app.use("/dashboard", dashboardController);
+app.use("/friendsWishlist", friendsWishlistController);
+app.use("/", (req, res) => {
+  res.send("Welcome to Giftune!");
+});
 app.get("*", (req, res) => {
-    res.status(404).send("Page not found");
-  });
+  res.status(404).send("Page not found");
+});
 
 // EXPORT
 module.exports = app;
