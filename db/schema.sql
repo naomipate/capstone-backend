@@ -1,12 +1,7 @@
 DROP DATABASE IF EXISTS giftune_db;
 
 CREATE DATABASE giftune_db;
-<<<<<<< HEAD
 \c giftune_db
-=======
-
-\c giftune_db;
->>>>>>> a91556c70fde90ddc90fd6bbef00b96a10c30b38
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
