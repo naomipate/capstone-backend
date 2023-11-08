@@ -36,7 +36,7 @@ router
     }
   });
 
-// GET, UPDATE AND DELETE BY ID
+// GET, UPDATE AND POST
 router
   .route("/:id")
   .get(async (req, res) => {
@@ -60,20 +60,19 @@ router
     if (deletedUserWishlist.length === 0) {
       res.status(404).json({ message: "Id not found!" });
     } else {
-      res.json(deletedUserWishlist[0]);
+      res.json(deletedUserWishlist);
+    }
+  })
+  .put(async (req, res) => {
+    const { id } = req.params;
+    const updatedUserWishlist = await updateUserWishlist(id, req.body);
+
+    if (updatedUserWishlist.length === 0) {
+      res.status(404).json({ message: "Id not found!" });
+    } else {
+      res.json(updatedUserWishlist);
     }
   });
-
-router.put("/:id", async (req, res) => {
-  const { user_id, id } = req.params;
-  const updatedUserWishlist = await updateUserWishlist(user_id, id, req.body);
-
-  if (updatedUserWishlist.length === 0) {
-    res.status(404).json({ message: "Id not found!" });
-  } else {
-    res.json(updatedUserWishlist[0]);
-  }
-});
 
 // EXPORT
 module.exports = router;

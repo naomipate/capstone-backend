@@ -37,11 +37,11 @@ const createWishlist = async (data) => {
   }
 };
 
-const deleteUserWishlist = async (user_id, id) => {
+const deleteUserWishlist = async (id) => {
   try {
     const deletedUserWishlist = await db.one(
-      `DELETE FROM wishlist WHERE user_id = $1, id = $2 RETURNING *`,
-      [user_id, id]
+      `DELETE FROM wishlist WHERE id = $1 RETURNING *`,
+      [id]
     );
 
     return deletedUserWishlist;
@@ -54,16 +54,10 @@ const updateUserWishlist = async (id, wishlist) => {
   let { item_name, link } = wishlist;
   try {
     const updatedWishlist = await db.any(
-      `UPDATE wishlist 
-      INNER JOIN users 
-      ON wishlist.user_id = users.id SET item_name = $1, link = $2 WHERE id = $3 RETURNING *`,
+      `UPDATE wishlist SET item_name = $1, link = $2 WHERE id = $3 RETURNING *`,
       [item_name, link, id]
-
-      // `UPDATE wishlist SET item_name = $1, link = $2 WHERE user_id = $3 AND id = $4 RETURNING *`,
-      // [item_name, link, user_id, id]
     );
 
-    console.log(updatedWishlist);
     return updatedWishlist;
   } catch (error) {
     return error;
