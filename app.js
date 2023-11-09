@@ -4,10 +4,9 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 // CONTROLLERS
-
 const userWishlistController = require("./controllers/userWishlistController");
 const usersController = require("./controllers/userController");
-const friendsWishlistController = require("./controllers/friendsWishlistController");
+// const friendsWishlistController = require("./controllers/friendsWishlistController");
 const dashboardController = require("./controllers/dashboardController");
 
 // CONFIG
@@ -23,7 +22,6 @@ app.use("/userwishlist", userWishlistController);
 app.use("/users", usersController);
 app.use("/dashboard", dashboardController);
 app.use("/friendsWishlist", friendsWishlistController);
-
 app.use("/", (req, res) => {
   res.send("Welcome to Giftune!");
 });
