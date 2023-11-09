@@ -20,7 +20,7 @@ const getUsersById = async (id) => {
 
 const getUserByEmail = async (email) => {
   try {
-    const userInfo = await db.any("SELECT * FROM users WHERE email=$1", [
+    const userInfo = await db.one("SELECT * FROM users WHERE email=$1", [
       email,
     ]);
     return userInfo;
