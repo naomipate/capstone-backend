@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   getAllUsers,
   getUsersById,
-  getUsersByEmail,
+  getUserByEmail,
   createUser,
 } = require("../queries/users");
 
