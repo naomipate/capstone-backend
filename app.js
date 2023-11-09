@@ -7,7 +7,7 @@ const cors = require("cors");
 
 const userWishlistController = require("./controllers/userWishlistController");
 const usersController = require("./controllers/userController");
-const friendsWishlistController = require("./controllers/friendsWishlistController");
+// const friendsWishlistController = require("./controllers/friendsWishlistController");
 const dashboardController = require("./controllers/dashboardController");
 
 // CONFIG
@@ -19,11 +19,10 @@ app.use(express.json()); // Parse incoming JSON
 app.use(cors("*")); // Enable Cross Origin Resource Sharing
 
 // ROUTES
+// app.use("/friendswishlist", friendsWishlistController);
 app.use("/userwishlist", userWishlistController);
 app.use("/users", usersController);
 app.use("/dashboard", dashboardController);
-app.use("/friendsWishlist", friendsWishlistController);
-
 app.use("/", (req, res) => {
   res.send("Welcome to Giftune!");
 });
