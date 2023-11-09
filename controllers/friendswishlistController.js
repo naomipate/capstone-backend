@@ -1,10 +1,6 @@
 // DEPENDENCIES
 const express = require("express");
 const router = express.Router();
-// let exampleModel = require("../models/example.model");
-
-// Make sure your model is working
-// console.log(exampleModel);
 
 const {
   getAllWishlists,
@@ -26,46 +22,46 @@ router
     }
   })
   .post(async (req, res) => {
-    const { wishlist_id } = req.body;
+    const { item_name } = req.body;
     const createdWishlist = await createWishlist(req.body);
 
-    if (!wishlist_id) {
+    if (!item_name) {
       res.status(400).json({
         status: false,
-        message: "You have to give a wishlist_id for the wishlist.",
+        message: "You have to give gift item name",
       });
     } else {
       res.json({ status: true, data: createdWishlist });
     }
   });
 
-// GET AND DELETE BY ID
-router
-  .route("/:id")
-  .get(async (req, res) => {
-    const { id } = req.params;
+// GET BY ID
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
 
-    const friendsWishlist = await getFriendsWishlist(id);
+  const friendsWishlist = await getFriendsWishlist(id);
 
-    if (!friendsWishlist) {
-      res.status(400).json({
-        status: false,
-        message: "Id not found!",
-      });
-    } else {
-      res.json(friendsWishlist);
-    }
-  })
-  .delete(async (req, res) => {
-    const { id } = req.params;
-    const deletedFriendsWishlist = await deleteFriendsWishlist(id);
+  if (!friendsWishlist) {
+    res.status(400).json({
+      status: false,
+      message: "Id not found!",
+    });
+  } else {
+    res.json(friendsWishlist);
+  }
+});
 
-    if (deletedFriendsWishlist.length === 0) {
-      res.status(404).json({ message: "Id not found!" });
-    } else {
-      res.json(deletedFriendsWishlist[0]);
-    }
-  });
+// DELETE BY ID
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  const deletedFriendsWishlist = await deleteFriendsWishlist(id);
+
+  if (deletedFriendsWishlist.length === 0) {
+    res.status(404).json({ message: "Id not found!" });
+  } else {
+    res.json(deletedFriendsWishlist[0]);
+  }
+});
 
 // EXPORT
 module.exports = router;

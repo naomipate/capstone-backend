@@ -10,16 +10,14 @@ const getAllWishlists = async () => {
   }
 };
 
-const getFriendsWishlist = async (id) => {
+const getUserWishlist = async (id) => {
   try {
-    const FriendWishlist = await db.any(
-      `SELECT * FROM wishlist AS w 
-      INNER JOIN friends_list AS f 
-      ON w.user_id = f.friends_id WHERE f.user_id = $1`,
+    const userWishlist = await db.any(
+      `SELECT * FROM wishlist WHERE user_id = $1`,
       id
     );
 
-    return FriendWishlist;
+    return userWishlist;
   } catch (err) {
     return err;
   }
@@ -39,21 +37,36 @@ const createWishlist = async (data) => {
   }
 };
 
-const deleteFriendsWishlist = async (id) => {
+const deleteUserWishlist = async (id) => {
   try {
-    const deletedFriendsWishlist = await db.one(
+    const deletedUserWishlist = await db.one(
       `DELETE FROM wishlist WHERE id = $1 RETURNING *`,
-      id
+      [id]
     );
 
-    return deletedFriendsWishlist;
+    return deletedUserWishlist;
   } catch (err) {
     throw err;
   }
 };
+
+const updateUserWishlist = async (id, wishlist) => {
+  let { item_name, link } = wishlist;
+  try {
+    const updatedWishlist = await db.any(
+      `UPDATE wishlist SET item_name = $1, link = $2 WHERE id = $3 RETURNING *`,
+      [item_name, link, id]
+    );
+
+    return updatedWishlist;
+  } catch (error) {
+    return error;
+  }
+};
 module.exports = {
   getAllWishlists,
-  getFriendsWishlist,
+  getUserWishlist,
   createWishlist,
-  deleteFriendsWishlist,
+  deleteUserWishlist,
+  updateUserWishlist,
 };

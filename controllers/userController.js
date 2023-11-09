@@ -16,6 +16,19 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/find-email", async (req, res) => {
+  console.log(req.query);
+  const { email } = req.query;
+  try {
+    const foundUser = await getUserByEmail(email);
+    res.status(200).json(foundUser);
+  } catch (error) {
+    res.status(500).json({
+      error: error,
+    });
+  }
+});
+
 router.get("/:id", async (req, res) => {
   const id = req.params.id;
 
@@ -25,6 +38,16 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ error: "User not found!" });
   } else {
     res.status(200).json(user[0]);
+  }
+});
+
+router.post("/", async (req, res) => {
+  console.log(req.body);
+  try {
+    const createdUser = await createUser(req.body);
+    res.status(200).json(createdUser[0]);
+  } catch (error) {
+    res.status(404).json({ error: error });
   }
 });
 

@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS giftune_db;
 
 CREATE DATABASE giftune_db;
 
-\c giftune_db;
+\c giftune_db
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
@@ -14,13 +14,12 @@ CREATE TABLE users (
     email VARCHAR(255) NOT NULL
 );
 
-INSERT INTO users(user_name, dob, email, friends_list_id, wishlist_id, notification_id) VALUES
-('Akira', '1998-12-21', 'akira@email.com', 1, 1, 1),
-('Chantal', '1999-05-13', 'chantal@email.com', 2, 2, 4),
-('Onyx', '1997-01-06', 'onyx@email.com', 3, 3, 3),
-('Naomi', '1994-09-10', 'naomi@email.com', 4, 4, 2),
-('Mussie', '1989-02-27', 'mussie@email.com', 5, 5, 5);
-
+INSERT INTO users(user_name, first_name, last_name, dob, email) VALUES
+('Akira', 'Akira', 'Brown', '1998-12-21', 'akira@email.com'),
+('Chantal', 'Chantal', 'Gomez', '1999-05-13', 'chantal@email.com'),
+('Onyx', 'Onyx', 'McQueen', '1997-01-06', 'onyx@email.com'),
+('Naomi', 'Naomi', 'Pate', '1994-09-10', 'naomi@email.com'),
+('Mussie', 'Mussie', 'Russom','1989-02-27', 'mussie@email.com');
 
 
 DROP TABLE IF EXISTS friends_list;
@@ -74,10 +73,9 @@ CREATE TABLE notifications (
     user_id INTEGER REFERENCES users(id),
     messages TEXT
 );
-
 INSERT INTO notifications(user_id, messages) VALUES
-(1, "Hello world!"),
-(2, "Hey fam!"),
-(3, "You're my best friend!"),
-(4, "I am groot!"),
-(5, "Hi");
+(1, 'Hello world!'),
+(2, 'Hey fam!'),
+(3, 'You are my best friend!'),
+(4, 'I am groot!'),
+(5, 'Hi');
