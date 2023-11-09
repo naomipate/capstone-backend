@@ -78,6 +78,7 @@ const getWishlistById = async (id) => {
 module.exports = {
   getUserProfile,
   getAllFriendsFromUser,
-  getAllFriendsFromUser,
+  getFriendsAndTheirWishlists,
   getWishlistById,
+  
 };
