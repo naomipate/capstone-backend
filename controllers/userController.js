@@ -2,10 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  getAllUsers,
-  getUsersById,
-  getUserByEmail,
-  createUser,
+    getAllUsers,
+    getUsersById
 } = require("../queries/users");
 
 router.get("/", async (req, res) => {
