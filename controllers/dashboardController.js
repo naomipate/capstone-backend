@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   getUserProfile,
   getAllFriendsFromUser,
+  getFriendsAndTheirWishlists
 } = require("../queries/dashboardQuery");
 
 // GET USER PROFILE, FRIENDS, AND FRIENDS WISHLISTS
@@ -14,6 +15,7 @@ router.get("/:id", async (req, res) => {
     const friendsOrderedByDOB = await getFriendsAndTheirWishlists(id);
     res.status(200).json({ userProfile, friendsOrderedByDOB });
   } catch (e) {
+    console.log(e);
     res.status(500).json({ message: `Error: ${e}` });
   }
 });

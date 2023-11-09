@@ -3,7 +3,8 @@ const router = express.Router();
 
 const {
     getAllUsers,
-    getUsersById
+    getUsersById,
+    getUserByEmail
 } = require("../queries/users");
 
 router.get("/", async (req, res) => {
@@ -16,9 +17,10 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/find-email", async (req, res) => {
-  console.log(req.query);
-  const { email } = req.query;
+router.post("/find-email", async (req, res) => {
+  console.log(req.body);
+
+  const { email } = req.body;
   try {
     const foundUser = await getUserByEmail(email);
     res.status(200).json(foundUser);

@@ -21,7 +21,7 @@ app.use(cors("*")); // Enable Cross Origin Resource Sharing
 app.use("/userwishlist", userWishlistController);
 app.use("/users", usersController);
 app.use("/dashboard", dashboardController);
-app.use("/friendsWishlist", friendsWishlistController);
+// app.use("/friendsWishlist", friendsWishlistController);
 app.use("/", (req, res) => {
   res.send("Welcome to Giftune!");
 });
