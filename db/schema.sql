@@ -13,6 +13,7 @@ CREATE TABLE users (
     dob DATE NOT NULL,
     email VARCHAR(255) NOT NULL
 );
+
 INSERT INTO users(user_name, first_name, last_name, dob, email) VALUES
 ('Akira', 'Akira', 'Brown', '1998-12-21', 'akira@email.com'),
 ('Chantal', 'Chantal', 'Gomez', '1999-05-13', 'chantal@email.com'),
