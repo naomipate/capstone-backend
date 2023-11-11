@@ -1,9 +1,10 @@
 const db = require("../db/dbConfig");
 
+// You don't need to set a variable if it is clear what is being returned from the function and it is one line
 const getAllUsers = async () => {
   try {
-    const allUsers = await db.any("SELECT * FROM users");
-    return allUsers;
+    // example ->
+    return await db.any("SELECT * FROM users");
   } catch (error) {
     return error;
   }

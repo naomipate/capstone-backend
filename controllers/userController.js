@@ -10,6 +10,8 @@ const {
 router.get("/", async (req, res) => {
   const allUsers = await getAllUsers();
   console.log(allUsers);
+  // It is possible that all users is an empty list so allUsers[0] can error, you should check for length instead
+  // allUsers.length === 0 -> res
   if (allUsers[0]) {
     res.json(allUsers);
   } else {
@@ -46,6 +48,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   console.log(req.body);
   try {
+    // A query to create a single item should return a single item instead of a list, to avoid having to do createdUser[0]
     const createdUser = await createUser(req.body);
     res.status(200).json(createdUser[0]);
   } catch (error) {

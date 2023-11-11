@@ -16,6 +16,9 @@ router
   .get(async (req, res) => {
     const allWishlists = await getAllWishlists();
 
+    // This will server error if there are no wishlists, probably don't want that
+    // Also you should avoid trusting JS truthiness, we like to be explicit to avoid searching for bugs
+    // !allWishlists can be rewritten as allWishLists == null <- only two equals checks for null AND undefined
     if (!allWishlists) {
       res.status(500).json({ error: "Server error" });
     } else {

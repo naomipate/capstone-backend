@@ -12,6 +12,9 @@ const getAllWishlists = async () => {
 
 const getFriendsWishlist = async (id) => {
   try {
+    // On a database with lots of records this query will be very slow
+    // because it will have to scan the entire table
+    // This data instead would have to be grabbed progressively on scroll or on page change
     const FriendWishlist = await db.any(
       `SELECT * FROM wishlist AS w 
       INNER JOIN friends_list AS f 

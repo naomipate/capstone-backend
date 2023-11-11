@@ -4,6 +4,27 @@ CREATE DATABASE giftune_db;
 
 \c giftune_db
 
+/*
+
+SUGGESTION: Table names should be plural forms of individual entitys and not based on the relations it defines/receives
+- users is good
+- notifications is good
+- instead of friends_list, it should be something like friends or connections
+- instead of wishlist, it should be something like gifts
+
+SUGGESTION: It is possible to have collisions in the user_name field or the email field
+- you can make these unique fields to prevent this
+ex:
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY NOT NULL,
+    user_name VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    dob DATE NOT NULL,
+);
+*/
+
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
     id SERIAL PRIMARY KEY NOT NULL,
@@ -28,6 +49,15 @@ CREATE TABLE friends_list (
     user_id INTEGER REFERENCES users(id),
     friends_id INTEGER REFERENCES users(id)
 );
+/*
+
+SUGGESTION: duplication of data in friends list
+If user 1 is friends with user 2, than we can assume that user 2 is friends with user 1
+this means we can cut data in half for this table by only inserting one row for each friendship
+ex query for getting a users friends with id 1
+SELECT * FROM friends_list WHERE user_id = 1 OR friends_id = 1;
+
+*/
 INSERT INTO friends_list(user_id, friends_id) VALUES
 (1, 2),
 (1, 3),
