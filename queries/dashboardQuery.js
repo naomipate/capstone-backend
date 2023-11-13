@@ -75,10 +75,11 @@ const getWishlistById = async (id) => {
   }
 };
 
+
+
 module.exports = {
   getUserProfile,
   getAllFriendsFromUser,
   getFriendsAndTheirWishlists,
   getWishlistById,
-  
 };

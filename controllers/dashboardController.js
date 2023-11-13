@@ -4,7 +4,8 @@ const router = express.Router();
 const {
   getUserProfile,
   getAllFriendsFromUser,
-  getFriendsAndTheirWishlists
+  getFriendsAndTheirWishlists,
+  getWishlistById
 } = require("../queries/dashboardQuery");
 
 // GET USER PROFILE, FRIENDS, AND FRIENDS WISHLISTS
@@ -25,6 +26,18 @@ router.get("/:id/friends", async (req, res) => {
   try {
     const userFriendsList = await getAllFriendsFromUser(id);
     res.status(200).json(userFriendsList);
+  } catch (e) {
+    res.status(500).json({ message: `Error: ${e}` });
+  }
+});
+
+// FRIEND'S PROFILE AND WISHLIST
+router.get("/:id/friends/:friendsId", async (req, res) => {
+  const { friendsId } = req.params;
+  try {
+    const friendProfile = await getUserProfile(friendsId);
+    const friendsWishlist = await getWishlistById(friendsId);
+    res.status(200).json({ friendProfile, friendsWishlist });
   } catch (e) {
     res.status(500).json({ message: `Error: ${e}` });
   }
