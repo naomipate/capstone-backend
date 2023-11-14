@@ -1,6 +1,6 @@
 const db = require("../db/dbConfig");
 
-// GET USER PROFILE ON SIGN-IN
+// GET USER PROFILE
 const getUserProfile = async (id) => {
   // user shown in nav
   const user = await db.one("SELECT * FROM users WHERE id=$1", id);
@@ -50,17 +50,18 @@ const getFriendsAndTheirWishlists = async (id) => {
 
 const getAllFriendsFromUser = async (id) => {
   try {
-      const allFriendsFromUser = await db.any(
-          `SELECT * FROM users 
+    const allFriendsFromUser = await db.any(
+      `SELECT * FROM users 
           INNER JOIN FRIENDS_LIST  
           ON FRIENDS_LIST.user_id = users.id
           WHERE FRIENDS_LIST.friends_id = $1`,
-           id)
-      return allFriendsFromUser
+      id
+    );
+    return allFriendsFromUser;
   } catch (error) {
-      return error
+    return error;
   }
-}
+};
 
 const getWishlistById = async (id) => {
   try {
@@ -80,5 +81,4 @@ module.exports = {
   getAllFriendsFromUser,
   getFriendsAndTheirWishlists,
   getWishlistById,
-  
 };
