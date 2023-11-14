@@ -71,11 +71,12 @@ DROP TABLE IF EXISTS notifications;
 CREATE TABLE notifications (
     id SERIAL PRIMARY KEY NOT NULL,
     user_id INTEGER REFERENCES users(id),
-    messages TEXT
+    messages TEXT,
+    sender_id INTEGER REFERENCES users(id)
 );
-INSERT INTO notifications(user_id, messages) VALUES
-(1, 'Hello world!'),
-(2, 'Hey fam!'),
-(3, 'You are my best friend!'),
-(4, 'I am groot!'),
-(5, 'Hi');
+INSERT INTO notifications(user_id, messages, sender_id) VALUES
+(1, 'Hello world!', 2),
+(2, 'Hey fam!',4),
+(3, 'You are my best friend!',5),
+(4, 'I am groot!',3),
+(5, 'Hi', 1);
