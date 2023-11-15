@@ -32,11 +32,11 @@ router.get("/:id/friends", async (req, res) => {
 });
 
 // FRIEND'S PROFILE AND WISHLIST
-router.get("/:id/friends/:friendsId", async (req, res) => {
-  const { friendsId } = req.params;
+router.get("/:id/friends/:friendId", async (req, res) => {
+  const { friendId } = req.params;
   try {
-    const friendProfile = await getUserProfile(friendsId);
-    const friendsWishlist = await getWishlistById(friendsId);
+    const friendProfile = await getUserProfile(friendId);
+    const friendsWishlist = await getWishlistById(friendId);
     res.status(200).json({ friendProfile, friendsWishlist });
   } catch (e) {
     res.status(500).json({ message: `Error: ${e}` });
