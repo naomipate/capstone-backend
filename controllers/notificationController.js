@@ -49,7 +49,7 @@ router.delete("/:id", async (req, res) => {
     if (deletedNotification.length === 0) {
       res.status(404).json({ message: "Notification not found" });
     } else {
-      res.status(200).json(deletedNotification[0]);
+      res.status(200).json(deletedNotification);
     }
   } catch (error) {
     res.status(500).json({ error: error });

@@ -1,7 +1,7 @@
 const db = require("../db/dbConfig");
 const getNotification = async (id) => {
   try {
-    const foundNotification = await db.any(
+    const foundNotification = await db.one(
       "SELECT * FROM notifications WHERE user_id=$1",
       [id]
     );
@@ -13,7 +13,7 @@ const getNotification = async (id) => {
 
 const addNotification = async ({ id, message, sender_id }) => {
   try {
-    const newNoti = await db.any(
+    const newNoti = await db.one(
       "INSERT INTO notifications(user_id, messages, sender_id) VALUES ($1,$2,$3) RETURNING *",
       [id, message, sender_id]
     );
@@ -33,7 +33,7 @@ const getAllNotifications = async () => {
 };
 const deleteNotification = async (id) => {
   try {
-    const deletedNotification = await db.any(
+    const deletedNotification = await db.one(
       "DELETE FROM notifications WHERE id=$1 RETURNING *",
       [id]
     );
