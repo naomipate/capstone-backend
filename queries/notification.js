@@ -1,7 +1,7 @@
 const db = require("../db/dbConfig");
 const getNotification = async (id) => {
   try {
-    const foundNotification = await db.one(
+    const foundNotification = await db.any(
       "SELECT * FROM notifications WHERE user_id=$1",
       [id]
     );
