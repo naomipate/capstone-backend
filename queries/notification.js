@@ -11,11 +11,11 @@ const getNotification = async (id) => {
   }
 };
 
-const addNotification = async ({ id, message, sender_id }) => {
+const addNotification = async ({ id, message, sender_id, sender_name }) => {
   try {
     const newNoti = await db.one(
-      "INSERT INTO notifications(user_id, messages, sender_id) VALUES ($1,$2,$3) RETURNING *",
-      [id, message, sender_id]
+      "INSERT INTO notifications(user_id, messages, sender_id, sender_name) VALUES ($1,$2,$3,$4) RETURNING *",
+      [id, message, sender_id, sender_name]
     );
     return newNoti;
   } catch (error) {
