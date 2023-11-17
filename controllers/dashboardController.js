@@ -5,7 +5,7 @@ const {
   getUserProfile,
   getAllFriendsFromUser,
   getFriendsAndTheirWishlists,
-  getWishlistById,
+  getWishlistById
 } = require("../queries/dashboardQuery");
 
 // GET USER PROFILE, FRIENDS, AND FRIENDS WISHLISTS
