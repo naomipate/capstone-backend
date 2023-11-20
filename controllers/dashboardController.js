@@ -11,6 +11,7 @@ const {
 // GET USER PROFILE, FRIENDS, AND FRIENDS WISHLISTS
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
+  console.log(id);
   try {
     const userProfile = await getUserProfile(id);
     const friendsOrderedByDOB = await getFriendsAndTheirWishlists(id);
@@ -21,6 +22,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// ALL FRIENDS
 router.get("/:id/friends", async (req, res) => {
   const { id } = req.params;
   try {
