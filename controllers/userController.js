@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const {
-    getAllUsers,
-    getUsersById,
-    getUserByEmail
+  getAllUsers,
+  getUsersById,
+  getUserByEmail,
 } = require("../queries/users");
 
 router.get("/", async (req, res) => {
