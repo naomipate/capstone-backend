@@ -32,7 +32,7 @@ const getUserByEmail = async (email) => {
 const createUser = async ({ user_name, first_name, last_name, dob, email }) => {
   try {
     const newUser = await db.any(
-      "INSERT INTO users(user_name,dob,email) VALUES ($1,$2,$3,$4,$5) RETURNING *",
+      "INSERT INTO users(user_name,first_name,last_name,dob,email) VALUES ($1,$2,$3,$4,$5) RETURNING *",
       [user_name, first_name, last_name, dob, email]
     );
     return newUser;
@@ -41,41 +41,22 @@ const createUser = async ({ user_name, first_name, last_name, dob, email }) => {
   }
 };
 
-
-//dashboard queries to move
-// const getAllFriendsFromUser = async (id) => {
-//     try {
-//         const allFriendsFromUser = await db.any(
-//             `SELECT * FROM users 
-//             INNER JOIN FRIENDS_LIST  
-//             ON FRIENDS_LIST.user_id = users.id
-//             WHERE FRIENDS_LIST.friends_id = $1`,
-//              id)
-//         return allFriendsFromUser
-//     } catch (error) {
-//         return error
-//     }
-// }
-
-// const getWishlistById = async (id) => {
-//     try {
-//       const FriendWishlist = await db.any(
-//         `SELECT * FROM wishlist WHERE user_id=$1`,
-//         id
-//       );
-  
-//       return FriendWishlist;
-//     } catch (err) {
-//       return err;
-//     }
-//   };
-  
+const editUserProfile = async () => {
+  try {
+    const user = await db.one(
+      "INSERT INTO users(user_name,first_name,last_name,dob,email) VALUES ($1,$2,$3,$4,$5) RETURNING *",
+      [user_name, first_name, last_name, dob, email]
+    );
+    return user;
+  } catch (e) {
+    return e;
+  }
+};
 
 module.exports = {
-    getAllUsers,
-    getUsersById,
-    // getAllFriendsFromUser,
-    // getWishlistById,
-    getUserByEmail,
-    createUser,
-}
+  getAllUsers,
+  getUsersById,
+  editUserProfile,
+  getUserByEmail,
+  createUser,
+};

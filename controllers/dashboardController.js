@@ -5,12 +5,14 @@ const {
   getUserProfile,
   getAllFriendsFromUser,
   getFriendsAndTheirWishlists,
-  getWishlistById
+  getWishlistById,
+  deleteFriendEntryFriendsList,
 } = require("../queries/dashboardQuery");
 
 // GET USER PROFILE, FRIENDS, AND FRIENDS WISHLISTS
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
+  console.log(id);
   try {
     const userProfile = await getUserProfile(id);
     const friendsOrderedByDOB = await getFriendsAndTheirWishlists(id);
@@ -21,6 +23,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// ALL FRIENDS
 router.get("/:id/friends", async (req, res) => {
   const { id } = req.params;
   try {
@@ -40,6 +43,17 @@ router.get("/:id/friends/:friendsId", async (req, res) => {
     res.status(200).json({ friendProfile, friendsWishlist });
   } catch (e) {
     res.status(500).json({ message: `Error: ${e}` });
+  }
+});
+
+//Deletes friend from friends_list table
+router.delete("/:id/friends/:friendsId", async (req, res) => {
+  const { id, friendsId } = req.params;
+  try {
+    const deletedFriend = await deleteFriendEntryFriendsList(id, friendsId);
+    res.status(200).json(deletedFriend);
+  } catch (error) {
+    res.status(500).json({ message: `Error: ${error}` });
   }
 });
 
