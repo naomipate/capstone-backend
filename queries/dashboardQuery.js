@@ -76,11 +76,22 @@ const getWishlistById = async (id) => {
   }
 };
 
-
+const deleteFriendEntryFriendsList = async (user_id, friend_id) => {
+  try {
+    const deletedFriend = await db.one(
+      `DELETE FROM friends_list WHERE user_id=$1 AND friends_id=$2 RETURNING *`,
+      [user_id, friend_id]
+    );
+    return deletedFriend;
+  } catch (error) {
+    return error;
+  }
+};
 
 module.exports = {
   getUserProfile,
   getAllFriendsFromUser,
   getFriendsAndTheirWishlists,
   getWishlistById,
+  deleteFriendEntryFriendsList,
 };
