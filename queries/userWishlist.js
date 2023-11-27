@@ -14,7 +14,7 @@ const getUserWishlist = async (id) => {
   try {
     const userWishlist = await db.any(
       `SELECT * FROM wishlist WHERE user_id = $1`,
-      id
+      [id]
     );
 
     return userWishlist;
