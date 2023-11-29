@@ -14,7 +14,7 @@ const getUserWishlist = async (id) => {
   try {
     const userWishlist = await db.any(
       `SELECT * FROM wishlist WHERE user_id = $1`,
-      id
+      [id]
     );
 
     return userWishlist;
@@ -26,9 +26,9 @@ const getUserWishlist = async (id) => {
 const createWishlist = async (data) => {
   try {
     const newWishlist = await db.one(
-      `INSERT INTO wishlist (user_id, item_name, link)
-      VALUES ($1, $2, $3) RETURNING *`,
-      [data.user_id, data.item_name, data.link]
+      `INSERT INTO wishlist (user_id, is_bought, item_name, link)
+      VALUES ($1, $2, $3, $4) RETURNING *`,
+      [data.user_id, false, data.item_name, data.link]
     );
 
     return newWishlist;
