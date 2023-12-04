@@ -88,10 +88,23 @@ const deleteFriendEntryFriendsList = async (user_id, friend_id) => {
   }
 };
 
+const addFriendEntryFriendsList = async (user_id, friend_id) => {
+  try {
+    const addedFriend = await db.one(
+      `INSERT INTO friends_list(user_id, friends_id) VALUES ($1, $2) RETURNING *`,
+      [user_id, friend_id]
+    );
+    return addedFriend;
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   getUserProfile,
   getAllFriendsFromUser,
   getFriendsAndTheirWishlists,
   getWishlistById,
   deleteFriendEntryFriendsList,
+  addFriendEntryFriendsList,
 };
