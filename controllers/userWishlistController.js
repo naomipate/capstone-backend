@@ -23,7 +23,6 @@ router
     }
   })
   .post(async (req, res) => {
-    console.log(req.body);
     const { item_name } = req.body;
     const createdWishlist = await createWishlist(req.body);
 

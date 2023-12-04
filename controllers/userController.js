@@ -11,7 +11,6 @@ const {
 
 router.get("/", async (req, res) => {
   const allUsers = await getAllUsers();
-  console.log(allUsers);
   if (allUsers[0]) {
     res.json(allUsers);
   } else {
@@ -20,8 +19,6 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/find-email", async (req, res) => {
-  console.log(req.body);
-
   const { email } = req.body;
   try {
     const foundUser = await getUserByEmail(email);
@@ -58,8 +55,6 @@ router.post("/", async (req, res) => {
 router.post("/profile/:id", async (req, res) => {
   const { id } = req.params;
   const incomingUserProfile = req.body;
-  console.log(id);
-  console.log(req.body);
   try {
     const updatedUser = await editUserProfile(id, incomingUserProfile);
     res.status(200).json(updatedUser);
