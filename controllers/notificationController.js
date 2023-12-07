@@ -8,7 +8,7 @@ const {
   deleteNotification,
 } = require("../queries/notification");
 
-//This grabs the whole user table
+//This grabs the whole notification table
 router.get("/", async (req, res) => {
   try {
     const allNotif = await getAllNotifications();
