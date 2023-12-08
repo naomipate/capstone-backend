@@ -7,8 +7,8 @@ const {
   getFriendsAndTheirWishlists,
   getWishlistById,
   deleteFriendEntryFriendsList,
-  addFriendEntryFriendsList,
   updateItemBoughtByItemId,
+  addFriendEntryFriendsList,
 } = require("../queries/dashboardQuery");
 
 // GET USER PROFILE, FRIENDS, AND FRIENDS WISHLISTS
