@@ -23,6 +23,7 @@ app.use("/users", usersController);
 app.use("/dashboard", dashboardController);
 app.use("/notification", notificationController);
 app.use("/", (req, res) => {
+  console.log("Welcome to Giftune!");
   res.send("Welcome to Giftune!");
 });
 app.get("*", (req, res) => {

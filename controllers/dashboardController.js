@@ -7,7 +7,7 @@ const {
   getFriendsAndTheirWishlists,
   getWishlistById,
   deleteFriendEntryFriendsList,
-  updateItemBoughtByItemId
+  updateItemBoughtByItemId,
 } = require("../queries/dashboardQuery");
 
 // GET USER PROFILE, FRIENDS, AND FRIENDS WISHLISTS
@@ -59,11 +59,24 @@ router.delete("/:id/friends/:friendsId", async (req, res) => {
 router.put("/item-details", async (req, res) => {
   console.log(req.body);
   try {
-    const userUpdatedFriendsWishlist = await updateItemBoughtByItemId(req.body.id, req.body.is_bought);
+    const userUpdatedFriendsWishlist = await updateItemBoughtByItemId(
+      req.body.id,
+      req.body.is_bought
+    );
 
     res.status(200).json(userUpdatedFriendsWishlist);
   } catch (error) {
     res.status(500).json({ message: `Error: ${error}` });
+  }
+});
+
+router.get("*", async (req, res) => {
+  try {
+    res.send(
+      "Welcome to Dashboard, Welcome to Dashboard, Welcome to Dashboard, Welcome to Dashboard!"
+    );
+  } catch (e) {
+    res.status(500).json({ message: `Error: ${e}` });
   }
 });
 
