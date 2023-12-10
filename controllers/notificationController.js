@@ -33,6 +33,7 @@ router.get("/:id", async (req, res) => {
 });
 // Creates a new Notification
 router.post("/new-notification", async (req, res) => {
+  console.log(req.body);
   try {
     const addedNoti = await addNotification(req.body);
     res.status(200).json(addedNoti);
