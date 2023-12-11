@@ -7,6 +7,7 @@ const {
   editUserProfile,
   getUserByEmail,
   createUser,
+  updateUserProfile,
 } = require("../queries/users");
 
 router.get("/", async (req, res) => {
@@ -60,6 +61,16 @@ router.post("/profile/:id", async (req, res) => {
     res.status(200).json(updatedUser);
   } catch (error) {
     res.status(404).json({ error: error });
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const updatedUserProfile = await updateUserProfile(id, req.body);
+  if (updatedUserProfile.length === 0) {
+    res.status(404).json({ message: "Id not found!" });
+  } else {
+    res.json(updatedUserProfile);
   }
 });
 
