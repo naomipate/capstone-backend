@@ -70,11 +70,14 @@ router.post("/add-new-friend", async (req, res) => {
 
 router.put("/item-details", async (req, res) => {
   console.log(req.body);
+  console.log(      req.body.id, 
+    req.body.is_bought,
+    req.body.assigned_user);
   try {
     const userUpdatedFriendsWishlist = await updateItemBoughtByItemId(
-      req.body.id,
-      req.body.is_bought
-    );
+      req.body.id, 
+      req.body.is_bought, 
+      req.body.assigned_user);
 
     res.status(200).json(userUpdatedFriendsWishlist);
   } catch (error) {

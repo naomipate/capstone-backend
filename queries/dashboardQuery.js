@@ -88,11 +88,11 @@ const deleteFriendEntryFriendsList = async (user_id, friend_id) => {
   }
 };
 
-const updateItemBoughtByItemId = async (id, is_bought) => {
+const updateItemBoughtByItemId = async (id, is_bought, assigned_user) => {
   try {
     const updatedWishlist = await db.one(
-      `UPDATE wishlist SET is_bought=$1 WHERE id = $2 RETURNING *`,
-      [is_bought, id]
+      `UPDATE wishlist SET is_bought=$1, assigned_user=$2 WHERE id=$3 RETURNING *`,
+      [is_bought, assigned_user, id]
     );
     return updatedWishlist;
   } catch (error) {
