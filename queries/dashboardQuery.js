@@ -95,10 +95,10 @@ const updateItemBoughtByItemId = async (id, is_bought) => {
       [is_bought, id]
     );
     return updatedWishlist;
-  }catch (error) {
+  } catch (error) {
     return error;
   }
-}
+};
 
 const addFriendEntryFriendsList = async (user_id, friend_id) => {
   try {
