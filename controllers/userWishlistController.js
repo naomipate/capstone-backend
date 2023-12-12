@@ -25,7 +25,7 @@ router
   .post(async (req, res) => {
     const { item_name } = req.body;
     const createdWishlist = await createWishlist(req.body);
-
+    console.log(createWishlist);
     if (!item_name) {
       res.status(400).json({
         status: false,
