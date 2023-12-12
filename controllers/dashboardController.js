@@ -7,6 +7,7 @@ const {
   getFriendsAndTheirWishlists,
   getWishlistById,
   deleteFriendEntryFriendsList,
+  updateItemBoughtByItemId,
   addFriendEntryFriendsList,
 } = require("../queries/dashboardQuery");
 
@@ -34,11 +35,11 @@ router.get("/:id/friends", async (req, res) => {
 });
 
 // FRIEND'S PROFILE AND WISHLIST
-router.get("/:id/friends/:friendsId", async (req, res) => {
-  const { friendsId } = req.params;
+router.get("/:id/friends/:friendId", async (req, res) => {
+  const { friendId } = req.params;
   try {
-    const friendProfile = await getUserProfile(friendsId);
-    const friendsWishlist = await getWishlistById(friendsId);
+    const friendProfile = await getUserProfile(friendId);
+    const friendsWishlist = await getWishlistById(friendId);
     res.status(200).json({ friendProfile, friendsWishlist });
   } catch (e) {
     res.status(500).json({ message: `Error: ${e}` });
@@ -64,6 +65,23 @@ router.post("/add-new-friend", async (req, res) => {
     res.status(200).json(addedFriend);
   } catch (error) {
     res.status(500).json({ message: `Error ${error}` });
+  }
+});
+
+router.put("/item-details", async (req, res) => {
+  console.log(req.body);
+  console.log(      req.body.id, 
+    req.body.is_bought,
+    req.body.assigned_user);
+  try {
+    const userUpdatedFriendsWishlist = await updateItemBoughtByItemId(
+      req.body.id, 
+      req.body.is_bought, 
+      req.body.assigned_user);
+
+    res.status(200).json(userUpdatedFriendsWishlist);
+  } catch (error) {
+    res.status(500).json({ message: `Error: ${error}` });
   }
 });
 

@@ -23,7 +23,7 @@ router.get("/:id", async (req, res) => {
   try {
     const foundNoti = await getNotification(id);
     if (foundNoti.length === 0) {
-      res.status(404).json({ message: "No Notifications" });
+      res.status(204).json({ message: "No Notifications" });
     } else {
       res.status(200).json(foundNoti);
     }

@@ -66,7 +66,7 @@ const getAllFriendsFromUser = async (id) => {
 const getWishlistById = async (id) => {
   try {
     const FriendWishlist = await db.any(
-      `SELECT * FROM wishlist WHERE user_id=$1`,
+      `SELECT * FROM wishlist WHERE user_id=$1 ORDER BY item_name ASC`,
       id
     );
 
@@ -83,6 +83,18 @@ const deleteFriendEntryFriendsList = async (user_id, friend_id) => {
       [user_id, friend_id]
     );
     return deletedFriend;
+  } catch (error) {
+    return error;
+  }
+};
+
+const updateItemBoughtByItemId = async (id, is_bought, assigned_user) => {
+  try {
+    const updatedWishlist = await db.one(
+      `UPDATE wishlist SET is_bought=$1, assigned_user=$2 WHERE id=$3 RETURNING *`,
+      [is_bought, assigned_user, id]
+    );
+    return updatedWishlist;
   } catch (error) {
     return error;
   }
@@ -106,5 +118,6 @@ module.exports = {
   getFriendsAndTheirWishlists,
   getWishlistById,
   deleteFriendEntryFriendsList,
+  updateItemBoughtByItemId,
   addFriendEntryFriendsList,
 };
