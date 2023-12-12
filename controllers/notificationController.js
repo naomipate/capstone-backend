@@ -23,7 +23,7 @@ router.get("/:id", async (req, res) => {
   try {
     const foundNoti = await getNotification(id);
     if (foundNoti.length === 0) {
-      res.status(404).json({ message: "No Notifications" });
+      res.status(204).json({ message: "No Notifications" });
     } else {
       res.status(200).json(foundNoti);
     }
@@ -33,7 +33,6 @@ router.get("/:id", async (req, res) => {
 });
 // Creates a new Notification
 router.post("/new-notification", async (req, res) => {
-  console.log(req.body);
   try {
     const addedNoti = await addNotification(req.body);
     res.status(200).json(addedNoti);
