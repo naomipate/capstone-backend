@@ -56,6 +56,7 @@ CREATE TABLE wishlist (
     id SERIAL PRIMARY KEY NOT NULL,
     user_id INTEGER REFERENCES users(id),
     is_bought BOOLEAN NOT NULL,
+    assigned_user INTEGER REFERENCES users(id),
     item_name VARCHAR(255),
     link TEXT
 );
