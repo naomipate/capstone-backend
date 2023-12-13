@@ -83,3 +83,18 @@ INSERT INTO notifications(user_id, messages, sender_id, sender_name) VALUES
 (3, 'You are my best friend!',5, 'Mussie'),
 (4, 'I am groot!',3, 'Onyx'),
 (5, 'Hi', 1, 'Akira');
+
+DROP TABLE IF EXISTS events;
+CREATE TABLE events (
+    id SERIAL PRIMARY KEY NOT NULL,
+    user_id INTEGER REFERENCES users(id),
+    event_date DATE NOT NULL,
+    event_time TIME NOT NULL,
+    google_location TEXT NOT NULL
+);
+INSERT INTO events(user_id, event_date, event_time, google_location) VALUES
+(1, '2023-12-21', '14:00:00', '47-10 Austell Pl 2nd floor, Long Island City, NY 11101'),
+(2, '2023-12-22', '15:00:00', '350 Fifth Avenue, New York, NY 10118'),
+(3, '2023-12-23', '16:00:00', '4 Pennsylvania Plaza, New York, NY 10001'),
+(4, '2023-12-24', '17:00:00', 'One World Trade Center, New York, NY 10007'),
+(5, '2023-12-25', '18:00:00', '89 E 42nd Street, New York, NY 10017');
