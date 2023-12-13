@@ -103,7 +103,7 @@ const updateItemBoughtByItemId = async (id, is_bought, assigned_user) => {
 const addFriendEntryFriendsList = async (user_id, friend_id) => {
   try {
     const addedFriend = await db.one(
-      `INSERT INTO friends_list(user_id, friends_id) VALUES ($1, $2) RETURNING *`,
+      `INSERT INTO friends_list(user_id, friends_id) VALUES ($1, $2),($2, $1) RETURNING *`,
       [user_id, friend_id]
     );
     return addedFriend;
