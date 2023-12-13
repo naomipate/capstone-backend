@@ -62,7 +62,11 @@ router.post("/add-new-friend", async (req, res) => {
 
   try {
     const addedFriend = await addFriendEntryFriendsList(user_id, friend_id);
-    res.status(200).json(addedFriend);
+    if (addedFriend.length === 0) {
+      res.status(204).json({ error: `Please Input valid id's` });
+    } else {
+      res.status(200).json(addedFriend);
+    }
   } catch (error) {
     res.status(500).json({ message: `Error ${error}` });
   }
