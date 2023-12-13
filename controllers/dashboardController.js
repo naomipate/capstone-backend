@@ -70,15 +70,27 @@ router.post("/add-new-friend", async (req, res) => {
 
 router.put("/item-details", async (req, res) => {
   console.log(req.body);
+  console.log(req.body.id, req.body.is_bought, req.body.assigned_user);
   try {
     const userUpdatedFriendsWishlist = await updateItemBoughtByItemId(
       req.body.id,
-      req.body.is_bought
+      req.body.is_bought,
+      req.body.assigned_user
     );
 
     res.status(200).json(userUpdatedFriendsWishlist);
   } catch (error) {
     res.status(500).json({ message: `Error: ${error}` });
+  }
+});
+
+router.get("*", async (req, res) => {
+  try {
+    res.send(
+      "Welcome to Dashboard, Welcome to Dashboard, Welcome to Dashboard, Welcome to Dashboard!"
+    );
+  } catch (e) {
+    res.status(500).json({ message: `Error: ${e}` });
   }
 });
 

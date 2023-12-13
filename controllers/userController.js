@@ -67,7 +67,7 @@ router.post("/profile/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
   const updatedUserProfile = await updateUserProfile(id, req.body);
-  if (updatedUserProfile.length === 0) {
+  if (!updatedUserProfile) {
     res.status(404).json({ message: "Id not found!" });
   } else {
     res.json(updatedUserProfile);
