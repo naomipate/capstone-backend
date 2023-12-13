@@ -8,7 +8,7 @@ const {
   deleteNotification,
 } = require("../queries/notification");
 
-//This grabs the whole user table
+//This grabs the whole notification table
 router.get("/", async (req, res) => {
   try {
     const allNotif = await getAllNotifications();
@@ -23,7 +23,7 @@ router.get("/:id", async (req, res) => {
   try {
     const foundNoti = await getNotification(id);
     if (foundNoti.length === 0) {
-      res.status(404).json({ message: "No Notifications" });
+      res.status(204).json({ message: "No Notifications" });
     } else {
       res.status(200).json(foundNoti);
     }

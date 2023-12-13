@@ -56,10 +56,11 @@ CREATE TABLE wishlist (
     id SERIAL PRIMARY KEY NOT NULL,
     user_id INTEGER REFERENCES users(id),
     is_bought BOOLEAN NOT NULL,
+    assigned_user INTEGER REFERENCES users(id),
     item_name VARCHAR(255),
     link TEXT
 );
-INSERT INTO wishlist(user_id, is_bought,item_name, link) VALUES
+INSERT INTO wishlist(user_id, is_bought, item_name, link) VALUES
 (1, false,'keyboard', 'https://www.amazon.com/Computer-Keyboard-Indicators-Spill-Resistant-Anti-Wear/dp/B09NLS9TK4/ref=sr_1_3?keywords=keyboard&qid=1698683098&sr=8-3'),
 (1, false,'watch', 'https://www.amazon.com/Casio-F108WH-Illuminator-Collection-Digital/dp/B0053HBJBE/ref=sr_1_2?crid=2ZSOX1A7Q9BR8&keywords=watch&qid=1698683161&sprefix=watch%2Caps%2C67&sr=8-2'),
 (2, false,'ipad pro', 'https://www.amazon.com/Apple-12-9-inch-iPad-Pro-Wi-Fi-256GB/dp/B0BJLFC67L/ref=sr_1_3?crid=YC0HIFYXGDV7&keywords=ipad+pro&qid=1698683221&sprefix=ipad+pro%2Caps%2C74&sr=8-3&ufe=app_do%3Aamzn1.fos.765d4786-5719-48b9-b588-eab9385652d5'),
@@ -92,7 +93,7 @@ CREATE TABLE events (
     google_location TEXT NOT NULL
 );
 INSERT INTO events(user_id, event_date, event_time, google_location) VALUES
-(1, "2023-12-21", "14:00:00", "47-10 Austell Pl 2nd floor, Long Island City, NY 11101"),
+(1, '2023-12-21', '14:00:00', '47-10 Austell Pl 2nd floor, Long Island City, NY 11101'),
 (2, '2023-12-22', '15:00:00', '350 Fifth Avenue, New York, NY 10118'),
 (3, '2023-12-23', '16:00:00', '4 Pennsylvania Plaza, New York, NY 10001'),
 (4, '2023-12-24', '17:00:00', 'One World Trade Center, New York, NY 10007'),

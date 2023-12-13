@@ -8,6 +8,7 @@ const {
   getWishlistById,
   deleteFriendEntryFriendsList,
   updateItemBoughtByItemId,
+  addFriendEntryFriendsList,
 } = require("../queries/dashboardQuery");
 
 // GET USER PROFILE, FRIENDS, AND FRIENDS WISHLISTS
@@ -55,13 +56,26 @@ router.delete("/:id/friends/:friendsId", async (req, res) => {
     res.status(500).json({ message: `Error: ${error}` });
   }
 });
+//Add friend to friend_list table
+router.post("/add-new-friend", async (req, res) => {
+  const { user_id, friend_id } = req.body;
+
+  try {
+    const addedFriend = await addFriendEntryFriendsList(user_id, friend_id);
+    res.status(200).json(addedFriend);
+  } catch (error) {
+    res.status(500).json({ message: `Error ${error}` });
+  }
+});
 
 router.put("/item-details", async (req, res) => {
   console.log(req.body);
+  console.log(req.body.id, req.body.is_bought, req.body.assigned_user);
   try {
     const userUpdatedFriendsWishlist = await updateItemBoughtByItemId(
       req.body.id,
-      req.body.is_bought
+      req.body.is_bought,
+      req.body.assigned_user
     );
 
     res.status(200).json(userUpdatedFriendsWishlist);
