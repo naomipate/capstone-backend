@@ -75,14 +75,18 @@ CREATE TABLE notifications (
     user_id INTEGER REFERENCES users(id),
     messages TEXT,
     sender_id INTEGER REFERENCES users(id),
-    sender_name TEXT
+    sender_name TEXT,
+    msg_type TEXT,
+    is_read BOOLEAN,
+    date_stamp DATE NOT NULL,
+    time_stamp TIME NOT NULL
 );
-INSERT INTO notifications(user_id, messages, sender_id, sender_name) VALUES
-(1, 'Hello world!', 2, 'Chantal'),
-(2, 'Hey fam!',4 , 'Naomi'),
-(3, 'You are my best friend!',5, 'Mussie'),
-(4, 'I am groot!',3, 'Onyx'),
-(5, 'Hi', 1, 'Akira');
+INSERT INTO notifications(user_id, messages, sender_id, sender_name, msg_type, is_read, date_stamp, time_stamp) VALUES
+(1, 'Has bought an item', 2, 'Chantal', 'purchase', false, '2023-03-21', '16:00:00'),
+(2, 'Has bought an item', 4, 'Naomi', 'purchase', false, '2023-03-21', '16:00:00'),
+(3, 'Has bought an item', 5, 'Mussie', 'purchase', false, '2023-03-21', '16:00:00'),
+(4, 'Has bought an item', 3, 'Onyx', 'purchase', false, '2023-03-21', '16:00:00'),
+(5, 'Has bought an item', 1, 'Akira', 'purchase', false, '2023-03-21', '16:00:00');
 
 DROP TABLE IF EXISTS events;
 CREATE TABLE events (
