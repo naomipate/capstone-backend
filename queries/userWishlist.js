@@ -26,9 +26,9 @@ const getUserWishlist = async (id) => {
 const createWishlist = async (data) => {
   try {
     const newWishlist = await db.one(
-      `INSERT INTO wishlist (user_id, is_bought, item_name, link)
-      VALUES ($1, $2, $3, $4) RETURNING *`,
-      [data.user_id, false, data.item_name, data.link]
+      `INSERT INTO wishlist (user_id, is_bought, item_name, item_price, link)
+      VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+      [data.user_id, false, data.item_name, data.item_price, data.link]
     );
 
     return newWishlist;
@@ -51,11 +51,11 @@ const deleteUserWishlist = async (id) => {
 };
 
 const updateUserWishlist = async (id, wishlist) => {
-  let { item_name, link } = wishlist;
+  let { item_name, item_price, link } = wishlist;
   try {
     const updatedWishlist = await db.any(
-      `UPDATE wishlist SET item_name = $1, link = $2 WHERE id = $3 RETURNING *`,
-      [item_name, link, id]
+      `UPDATE wishlist SET item_name = $1, item_price = $2, link = $3 WHERE id = $4 RETURNING *`,
+      [item_name, item_price, link, id]
     );
 
     return updatedWishlist;
