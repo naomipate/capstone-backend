@@ -6,6 +6,7 @@ const {
   addNotification,
   getAllNotifications,
   deleteNotification,
+  updateNotifications,
 } = require("../queries/notification");
 
 //This grabs the whole notification table
@@ -51,6 +52,17 @@ router.delete("/:id", async (req, res) => {
     } else {
       res.status(200).json(deletedNotification);
     }
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+});
+
+//This Updates a notification based on whether they've read it or not
+router.put("/update-notification", async (req, res) => {
+  try {
+    const updatedNoti = updateNotifications(req.body);
+    console.log(updatedNoti);
+    res.status(200).json(updatedNoti);
   } catch (error) {
     res.status(500).json({ error: error });
   }

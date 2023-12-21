@@ -60,10 +60,22 @@ const deleteNotification = async (id) => {
     return error;
   }
 };
+const updateNotifications = async ({ id, is_read }) => {
+  try {
+    const updatedNoti = await db.one(
+      "UPDATE notifications SET is_read=$1 WHERE id=$2 RETURNING *",
+      [is_read, id]
+    );
+    return updatedNoti;
+  } catch (error) {
+    return error;
+  }
+};
 
 module.exports = {
   getNotification,
   addNotification,
   getAllNotifications,
   deleteNotification,
+  updateNotifications,
 };
