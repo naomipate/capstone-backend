@@ -19,7 +19,24 @@ INSERT INTO users(user_name, first_name, last_name, dob, email) VALUES
 ('Chantal', 'Chantal', 'Gomez', '1999-05-13', 'chantal@email.com'),
 ('Onyx', 'Onyx', 'McQueen', '1997-01-06', 'onyx@email.com'),
 ('Naomi', 'Naomi', 'Pate', '1994-09-10', 'naomi@email.com'),
-('Mussie', 'Mussie', 'Russom','1989-02-27', 'mussie@email.com');
+('Mussie', 'Mussie', 'Russom','1989-02-27', 'mussie@email.com'),
+('Casey', 'Casey', 'Smith', '1999-10-10', 'casey@email.com'),
+('Jeff', 'Jeff', 'Helman', '1998-03-12', 'jeff@email.com'),
+('Emily', 'Emily', 'Johnson', '1995-03-15', 'Emily@email.com'),
+('Benjamin', 'Benjamin', 'Martinez', '1992-11-05', 'Benjamin@email.com'),
+('Sophia', 'Sophia', 'Lee', '1998-04-20', 'Sophia@email.com'),
+('Jackson', 'Jackson', 'Thompson', '1993-09-08', 'Jackson@email.com'),
+('Olivia', 'Olivia', 'Rodriguez', '1996-05-10', 'Olivia@email.com'),
+('Ethan', 'Ethan', 'Adams', '2000-07-03', 'Ethan@email.com'),
+('Ava', 'Ava', 'Wright', '1991-02-18', 'Ava@email.com'),
+('Liam', 'Liam', 'Campbell', '1994-10-30', 'Liam@email.com'),
+('Charlotte', 'Charlotte', 'White', '1997-06-25', 'Charlotte@email.com'),
+('Mason', 'Mason', 'Rivera', '2001-12-12', 'Mason@email.com'),
+('Amelia', 'Amelia', 'Cooper', '1999-08-07', 'Amelia@email.com'),
+('Noah', 'Noah', 'Hughes', '1990-01-22', 'Noah@email.com'),
+('Isabella', 'Isabella', 'Patel', '1993-11-14', 'Isabella@email.com'),
+('Lucas', 'Lucas', 'Mitchell', '1992-03-05', 'Lucas@email.com'),
+('Mia', 'Mia', 'Carter', '1995-09-28', 'Mia@email.com');
 
 
 DROP TABLE IF EXISTS friends_list;
@@ -83,11 +100,16 @@ CREATE TABLE notifications (
     time_stamp TIME NOT NULL
 );
 INSERT INTO notifications(user_id, messages, sender_id, sender_name, msg_type, is_read, date_stamp, time_stamp) VALUES
-(1, 'Has bought an item', 2, 'Chantal', 'purchase', false, '2023-03-21', '16:00:00'),
-(2, 'Has bought an item', 4, 'Naomi', 'purchase', false, '2023-03-21', '16:00:00'),
-(3, 'Has bought an item', 5, 'Mussie', 'purchase', false, '2023-03-21', '16:00:00'),
-(4, 'Has bought an item', 3, 'Onyx', 'purchase', false, '2023-03-21', '16:00:00'),
-(5, 'Has bought an item', 1, 'Akira', 'purchase', false, '2023-03-21', '16:00:00');
+(1, 'An Item has been bought', 2, 'Chantal', 'purchase', false, '2023-03-21', '16:00:00'),
+(2, 'An Item has been bought', 4, 'Naomi', 'purchase', false, '2023-03-21', '16:00:00'),
+(3, 'An Item has been bought', 5, 'Mussie', 'purchase', false, '2023-03-21', '16:00:00'),
+(4, 'An Item has been bought', 3, 'Onyx', 'purchase', false, '2023-03-21', '16:00:00'),
+(5, 'An Item has been bought', 1, 'Akira', 'purchase', false, '2023-03-21', '16:00:00'),
+(5, 'Wants to Be Friends', 16, 'Charlotte', 'request', false, '2023-03-21', '16:00:00'),
+(4, 'Wants to Be Friends', 17, 'Mason', 'request', false, '2023-03-21', '16:00:00'),
+(3, 'Wants to Be Friends', 18, 'Amelia', 'request', false, '2023-03-21', '16:00:00'),
+(2, 'Wants to Be Friends', 19, 'Noah', 'request', false, '2023-03-21', '16:00:00'),
+(1, 'Wants to Be Friends', 20, 'Isabella', 'request', false, '2023-03-21', '16:00:00');
 
 DROP TABLE IF EXISTS events;
 CREATE TABLE events (
