@@ -60,8 +60,7 @@ router.delete("/:id", async (req, res) => {
 //This Updates a notification based on whether they've read it or not
 router.put("/update-notification", async (req, res) => {
   try {
-    const updatedNoti = updateNotifications(req.body);
-    console.log(updatedNoti);
+    const updatedNoti = await updateNotifications(req.body);
     res.status(200).json(updatedNoti);
   } catch (error) {
     res.status(500).json({ error: error });
