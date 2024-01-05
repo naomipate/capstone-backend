@@ -4,7 +4,6 @@ const router = express.Router();
 const {
   getUserProfile,
   getAllFriendsFromUser,
-  getFriendsAndTheirWishlists,
   getWishlistById,
   deleteFriendEntryFriendsList,
   updateItemBoughtByItemId,
@@ -16,8 +15,8 @@ router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const userProfile = await getUserProfile(id);
-    const friendsOrderedByDOB = await getFriendsAndTheirWishlists(id);
-    res.status(200).json({ userProfile, friendsOrderedByDOB });
+    const friends = await getAllFriendsFromUser(id);
+    res.status(200).json({ userProfile, friends });
   } catch (e) {
     res.status(500).json({ message: `Error: ${e}` });
   }
