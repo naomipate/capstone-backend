@@ -7,7 +7,7 @@ CREATE DATABASE giftune_db;
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
     id SERIAL PRIMARY KEY NOT NULL,
-    user_picture TEXT NOT NULL,
+    user_picture TEXT,
     user_name VARCHAR(255) NOT NULL,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
