@@ -29,11 +29,11 @@ const getUserByEmail = async (email) => {
   }
 };
 
-const createUser = async ({ user_name, first_name, last_name, dob, email }) => {
+const createUser = async ({ user_picture, user_name, first_name, last_name, dob, email }) => {
   try {
     const newUser = await db.any(
-      "INSERT INTO users(user_name,first_name,last_name,dob,email) VALUES ($1,$2,$3,$4,$5) RETURNING *",
-      [user_name, first_name, last_name, dob, email]
+      "INSERT INTO users(user_picture,user_name,first_name,last_name,dob,email) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *",
+      [user_picture, user_name, first_name, last_name, dob, email]
     );
     return newUser;
   } catch (error) {
@@ -44,8 +44,8 @@ const createUser = async ({ user_name, first_name, last_name, dob, email }) => {
 const editUserProfile = async () => {
   try {
     const user = await db.one(
-      "INSERT INTO users(user_name,first_name,last_name,dob,email) VALUES ($1,$2,$3,$4,$5) RETURNING *",
-      [user_name, first_name, last_name, dob, email]
+      "INSERT INTO users(user_picture,user_name,first_name,last_name,dob,email) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *",
+      [user_picture, user_name, first_name, last_name, dob, email]
     );
     return user;
   } catch (e) {
@@ -54,11 +54,11 @@ const editUserProfile = async () => {
 };
 
 const updateUserProfile = async (id, userProfile) => {
-  let { user_name, first_name, last_name, email, dob } = userProfile;
+  let { user_picture, user_name, first_name, last_name, email, dob } = userProfile;
   try {
     const updatedUserProfile = await db.one(
-      `UPDATE users SET user_name = $1, first_name = $2, last_name = $3, email = $4, dob = $5 WHERE id = $6 RETURNING *`,
-      [user_name, first_name, last_name, email, dob, id]
+      `UPDATE users SET user_picture = $1, user_name = $2, first_name = $3, last_name = $4, email = $5, dob = $6 WHERE id = $7 RETURNING *`,
+      [user_picture, user_name, first_name, last_name, email, dob, id]
     );
     return updatedUserProfile;
   } catch (error) {
